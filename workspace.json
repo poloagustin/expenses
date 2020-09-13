@@ -84,6 +84,44 @@
           }
         }
       }
+    },
+    "auth-rules": {
+      "root": "apps/auth-rules",
+      "sourceRoot": "apps/auth-rules",
+      "projectType": "application",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@nrwl/workspace:run-commands",
+          "options": {
+            "commands": [
+              "mkdir -p dist/apps/auth-rules",
+              "rm -rf dist/apps/auth-rules",
+              "mkdir -p dist/apps/auth-rules",
+              "cp -r apps/auth-rules/src dist/apps/auth-rules"
+            ]
+          },
+          "configurations": {
+            "production": {}
+          }
+        }
+      }
+    },
+    "backend": {
+      "root": "apps/backend",
+      "sourceRoot": "apps/backend",
+      "projectType": "application",
+      "schematics": {},
+      "architect": {
+        "serve": {
+          "builder": "@nrwl/workspace:run-commands",
+          "options": {
+            "commands": [
+              "docker-compose -f apps/backend/src/docker-compose.yml up"
+            ]
+          }
+        }
+      }
     }
   },
   "cli": {
