@@ -28,9 +28,6 @@
     "www-e2e": {
       "tags": [],
       "implicitDependencies": ["www"]
-    },
-    "auth-rules": {
-      "tags": []
     }
   }
 }
