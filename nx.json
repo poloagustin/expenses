@@ -31,9 +31,6 @@
     },
     "auth-rules": {
       "tags": []
-    },
-    "backend": {
-      "tags": []
     }
   }
 }

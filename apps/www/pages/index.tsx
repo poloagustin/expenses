@@ -1,103 +1,84 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 
 import './index.scss';
+import TextField from '@material-ui/core/TextField';
+import FormControl from '@material-ui/core/FormControl';
+import InputLabel from '@material-ui/core/InputLabel';
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
+import { CreateEntity, Expense } from '../shared/symbols';
+import { buildCreateEntityExpense } from '../shared/builders';
+import useExpenseTypes from '../shared/use-expense-types.hook';
 
-import { ReactComponent as NxLogo } from '../public/nx-logo-white.svg';
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      '& > *': {
+        margin: theme.spacing(1),
+        width: '25ch',
+      },
+    },
+    formControl: {
+      margin: theme.spacing(1),
+      minWidth: 120,
+    },
+  })
+);
 
 export const Index = () => {
-  /*
-   * Replace the elements below with your own.
-   *
-   * Note: The corresponding styles are in the ./${fileName}.${style} file.
-   */
+  const classes = useStyles();
+  const [expense, setExpense] = useState<CreateEntity<Expense>>(
+    buildCreateEntityExpense()
+  );
+
+  const handleControlChange = (field: keyof CreateEntity<Expense>) => (
+    event: React.ChangeEvent<{ name?: string; value: unknown }>
+  ) => {
+    setExpense((_expense) => {
+      switch (field) {
+        case 'amount':
+          return { ..._expense, amount: +event.target.value };
+        default:
+          return { ..._expense, [field]: `${event.target.value}` };
+      }
+    });
+  };
+
+  const [expenseTypes] = useExpenseTypes();
+
   return (
-    <div className="app">
-      <header className="flex">
-        <NxLogo alt="" width="75" height="50" />
-        <h1>Welcome to www!</h1>
-      </header>
-      <main>
-        <h2>Resources &amp; Tools</h2>
-        <p>Thank you for using and showing some ♥ for Nx.</p>
-        <div className="flex github-star-container">
-          <a
-            href="https://github.com/nrwl/nx"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {' '}
-            If you like Nx, please give it a star:
-            <div className="github-star-badge">
-              <img src="/star.svg" className="material-icons" alt="" />
-              Star
-            </div>
-          </a>
-        </div>
-        <p>Here are some links to help you get started.</p>
-        <ul className="resources">
-          <li className="col-span-2">
-            <a
-              className="resource flex"
-              href="https://connect.nrwl.io/app/courses/nx-workspaces/intro"
-            >
-              Nx video course
-            </a>
-          </li>
-          <li className="col-span-2">
-            <a
-              className="resource flex"
-              href="https://nx.dev/react/getting-started/what-is-nx"
-            >
-              Nx video tutorial
-            </a>
-          </li>
-          <li className="col-span-2">
-            <a
-              className="resource flex"
-              href="https://nx.dev/react/tutorial/01-create-application"
-            >
-              Interactive tutorial
-            </a>
-          </li>
-          <li className="col-span-2">
-            <a className="resource flex" href="https://connect.nrwl.io/">
-              <img
-                height="36"
-                alt="Nrwl Connect"
-                src="https://connect.nrwl.io/assets/img/CONNECT_ColorIcon.png"
-              />
-              <span className="gutter-left">Nrwl Connect</span>
-            </a>
-          </li>
-        </ul>
-        <h2>Next Steps</h2>
-        <p>Here are some things you can do with Nx.</p>
-        <details open>
-          <summary>Add UI library</summary>
-          <pre>{`# Generate UI lib
-nx g @nrwl/react:lib ui
-
-# Add a component
-nx g @nrwl/react:component xyz --project ui`}</pre>
-        </details>
-        <details>
-          <summary>View dependency graph</summary>
-          <pre>{`nx dep-graph`}</pre>
-        </details>
-        <details>
-          <summary>Run affected commands</summary>
-          <pre>{`# see what's been affected by changes
-nx affected:dep-graph
-
-# run tests for current changes
-nx affected:test
-
-# run e2e tests for current changes
-nx affected:e2e
-`}</pre>
-        </details>
-      </main>
-    </div>
+    <form className={classes.root} noValidate autoComplete="off">
+      <FormControl className={classes.formControl}>
+        <InputLabel id="type-label">Age</InputLabel>
+        <Select
+          labelId="type-label"
+          id="type-select"
+          value={expense.type}
+          onChange={handleControlChange('type')}
+        >
+          {expenseTypes.map((expenseType) => (
+            <MenuItem key={expenseType.id} value={expenseType.id}>
+              {expenseType.name}
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
+      <TextField
+        id="name"
+        label="Descripcion del gasto"
+        type="text"
+        value={expense.name}
+        onChange={handleControlChange('name')}
+      />
+      <TextField
+        id="amount"
+        label="Monto"
+        type="number"
+        value={expense.amount}
+        onChange={handleControlChange('amount')}
+      />
+    </form>
   );
 };
 
