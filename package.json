@@ -71,7 +71,7 @@
     "eslint-plugin-react-hooks": "4.0.4",
     "husky": "^4.3.0",
     "jest": "25.2.3",
-    "node-sass": "4.13.1",
+    "node-sass": "4.14.1",
     "prettier": "2.0.4",
     "pretty-quick": "^3.0.2",
     "ts-jest": "25.2.1",
