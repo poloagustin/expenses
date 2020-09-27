@@ -1,0 +1,15 @@
+overwrite: true
+schema:
+  - 'https://touching-joey-62.hasura.app/v1/graphql':
+      headers:
+        x-hasura-admin-secret: '${env:HASURA_GRAPHQL_ADMIN_SECRET}'
+documents: 'apps/www/src/**/*.graphql'
+generates:
+  apps/www/src/generated/graphql.tsx:
+    plugins:
+      - 'typescript'
+      - 'typescript-operations'
+      - 'typescript-react-apollo'
+  ./graphql.schema.json:
+    plugins:
+      - 'introspection'
