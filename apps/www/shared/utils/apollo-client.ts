@@ -11,7 +11,7 @@ import { ServerError } from 'apollo-link-http-common';
 import { ApolloLink } from 'apollo-boost';
 import getConfig from 'next/config';
 
-const { publicRuntimeConfig } = getConfig();
+const publicRuntimeConfig = getConfig().publicRuntimeConfig;
 const { subscriptionUri, appHost } = publicRuntimeConfig;
 
 let accessToken = null;
