@@ -7,11 +7,16 @@ export default initAuth0({
   scope: 'openid profile',
   redirectUri: process.env.NX_AUTH0_REDIRECT_URI,
   postLogoutRedirectUri: process.env.NX_AUTH0_POST_LOGOUT_REDIRECT_URI,
+  audience: process.env.NX_AUTH0_AUDIENCE,
   session: {
     // The secret used to encrypt the cookie.
     cookieSecret: process.env.NX_AUTH0_COOKIE_SECRET,
     // The cookie lifetime (expiration) in seconds. Set to 8 hours by default.
     cookieLifetime: 60 * 60 * 8,
+    cookieDomain: process.env.NX_AUTH0_COOKIE_DOMAIN,
+    storeAccessToken: true,
+    storeRefreshToken: true,
+    storeIdToken: true,
   },
   oidcClient: {
     // (Optional) Configure the timeout in milliseconds for HTTP requests to Auth0.
