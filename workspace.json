@@ -53,12 +53,6 @@
             "jestConfig": "apps/www/jest.config.js",
             "tsConfig": "apps/www/tsconfig.spec.json",
             "passWithNoTests": true
-          },
-          "configurations": {
-            "ci": {
-              "codeCoverage": true,
-              "coverageDirectory": "coverage/www"
-            }
           }
         }
       }
