@@ -1,3 +1,9 @@
+const { setConfig } = require('next/config');
+const config = require('./next.config');
+
+// Make sure you can use "publicRuntimeConfig" within tests.
+setConfig(config.publicRuntimeConfig);
+
 module.exports = {
   name: 'www',
   preset: '../../jest.config.js',
@@ -12,4 +18,6 @@ module.exports = {
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'html'],
   coverageDirectory: '../../coverage/apps/www',
+  coverageReporters: ['json', 'html', 'lcovonly'],
+  setupFiles: ['<rootDir>/jest.setup.js'],
 };

@@ -1,3 +1,7 @@
+import { ApolloClient } from '@apollo/client';
+
+export type TApolloClient<TCacheShape> = ApolloClient<TCacheShape>;
+
 export interface BaseEntity {
   id: string;
   createdAt: string;

@@ -1,0 +1,20 @@
+overwrite: true
+schema:
+  - ${NX_BACKEND_URI}:
+      headers:
+        authorization: 'Bearer ${AUTH_TOKEN}'
+documents: apps/www/graphql/**.ts
+generates:
+  apps/www/generated/graphql.ts:
+    plugins:
+      - typescript
+      - typescript-operations
+      - typescript-react-apollo
+    config:
+      withHooks: true
+      withMutationFn: true
+      namingConvention:
+        transformUnderscore: true
+  apps/www/generated/graphql.schema.json:
+    plugins:
+      - 'introspection'
