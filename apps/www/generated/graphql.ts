@@ -1,7 +1,9 @@
 import { gql } from '@apollo/client';
 import * as Apollo from '@apollo/client';
 export type Maybe<T> = T | null;
-export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
+export type Exact<T extends { [key: string]: unknown }> = {
+  [K in keyof T]: T[K];
+};
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string;
@@ -57,7 +59,7 @@ export enum AccountTypesSelectColumn {
   /** column name */
   Id = 'id',
   /** column name */
-  Name = 'name'
+  Name = 'name',
 }
 
 /** columns and relationships of "Accounts" */
@@ -103,7 +105,7 @@ export enum AccountsConstraint {
   /** unique or primary key constraint */
   AccountsNameKey = 'Accounts_name_key',
   /** unique or primary key constraint */
-  AccountsPkey = 'Accounts_pkey'
+  AccountsPkey = 'Accounts_pkey',
 }
 
 /** input type for incrementing integer column in table "Accounts" */
@@ -189,7 +191,7 @@ export enum AccountsSelectColumn {
   /** column name */
   Name = 'name',
   /** column name */
-  UpdatedAt = 'updatedAt'
+  UpdatedAt = 'updatedAt',
 }
 
 /** input type for updating data in table "Accounts" */
@@ -218,7 +220,7 @@ export enum AccountsUpdateColumn {
   /** column name */
   Limit = 'limit',
   /** column name */
-  Name = 'name'
+  Name = 'name',
 }
 
 /** expression to compare columns of type Boolean. All fields are combined with logical 'AND'. */
@@ -281,7 +283,7 @@ export enum CurrenciesSelectColumn {
   /** column name */
   IsDefault = 'isDefault',
   /** column name */
-  Name = 'name'
+  Name = 'name',
 }
 
 /** expression to compare columns of type Int. All fields are combined with logical 'AND'. */
@@ -334,7 +336,7 @@ export enum PaymentTypesSelectColumn {
   /** column name */
   Id = 'id',
   /** column name */
-  Name = 'name'
+  Name = 'name',
 }
 
 /** columns and relationships of "RecordCategories" */
@@ -384,7 +386,7 @@ export enum RecordCategoriesSelectColumn {
   /** column name */
   Name = 'name',
   /** column name */
-  Parent = 'parent'
+  Parent = 'parent',
 }
 
 /** columns and relationships of "Records" */
@@ -436,7 +438,7 @@ export type RecordsBoolExp = {
 /** unique or primary key constraints on table "Records" */
 export enum RecordsConstraint {
   /** unique or primary key constraint */
-  RecordsPkey = 'Records_pkey'
+  RecordsPkey = 'Records_pkey',
 }
 
 /** input type for incrementing integer column in table "Records" */
@@ -542,7 +544,7 @@ export enum RecordsSelectColumn {
   /** column name */
   RecordCategoryId = 'recordCategoryId',
   /** column name */
-  Type = 'type'
+  Type = 'type',
 }
 
 /** input type for updating data in table "Records" */
@@ -586,7 +588,7 @@ export enum RecordsUpdateColumn {
   /** column name */
   RecordCategoryId = 'recordCategoryId',
   /** column name */
-  Type = 'type'
+  Type = 'type',
 }
 
 /** expression to compare columns of type String. All fields are combined with logical 'AND'. */
@@ -608,7 +610,6 @@ export type StringComparisonExp = {
   _similar?: Maybe<Scalars['String']>;
 };
 
-
 /** expression to compare columns of type bigint. All fields are combined with logical 'AND'. */
 export type BigintComparisonExp = {
   _eq?: Maybe<Scalars['bigint']>;
@@ -622,7 +623,6 @@ export type BigintComparisonExp = {
   _nin?: Maybe<Array<Scalars['bigint']>>;
 };
 
-
 /** expression to compare columns of type date. All fields are combined with logical 'AND'. */
 export type DateComparisonExp = {
   _eq?: Maybe<Scalars['date']>;
@@ -635,7 +635,6 @@ export type DateComparisonExp = {
   _neq?: Maybe<Scalars['date']>;
   _nin?: Maybe<Array<Scalars['date']>>;
 };
-
 
 /** expression to compare columns of type money. All fields are combined with logical 'AND'. */
 export type MoneyComparisonExp = {
@@ -679,30 +678,25 @@ export type MutationRoot = {
   update_Records_by_pk?: Maybe<Records>;
 };
 
-
 /** mutation root */
 export type MutationRootDeleteAccountsArgs = {
   where: AccountsBoolExp;
 };
-
 
 /** mutation root */
 export type MutationRootDeleteAccountsByPkArgs = {
   id: Scalars['Int'];
 };
 
-
 /** mutation root */
 export type MutationRootDeleteRecordsArgs = {
   where: RecordsBoolExp;
 };
 
-
 /** mutation root */
 export type MutationRootDeleteRecordsByPkArgs = {
   id: Scalars['bigint'];
 };
-
 
 /** mutation root */
 export type MutationRootInsertAccountsArgs = {
@@ -710,13 +704,11 @@ export type MutationRootInsertAccountsArgs = {
   on_conflict?: Maybe<AccountsOnConflict>;
 };
 
-
 /** mutation root */
 export type MutationRootInsertAccountsOneArgs = {
   object: AccountsInsertInput;
   on_conflict?: Maybe<AccountsOnConflict>;
 };
-
 
 /** mutation root */
 export type MutationRootInsertRecordsArgs = {
@@ -724,13 +716,11 @@ export type MutationRootInsertRecordsArgs = {
   on_conflict?: Maybe<RecordsOnConflict>;
 };
 
-
 /** mutation root */
 export type MutationRootInsertRecordsOneArgs = {
   object: RecordsInsertInput;
   on_conflict?: Maybe<RecordsOnConflict>;
 };
-
 
 /** mutation root */
 export type MutationRootUpdateAccountsArgs = {
@@ -739,7 +729,6 @@ export type MutationRootUpdateAccountsArgs = {
   where: AccountsBoolExp;
 };
 
-
 /** mutation root */
 export type MutationRootUpdateAccountsByPkArgs = {
   _inc?: Maybe<AccountsIncInput>;
@@ -747,14 +736,12 @@ export type MutationRootUpdateAccountsByPkArgs = {
   pk_columns: AccountsPkColumnsInput;
 };
 
-
 /** mutation root */
 export type MutationRootUpdateRecordsArgs = {
   _inc?: Maybe<RecordsIncInput>;
   _set?: Maybe<RecordsSetInput>;
   where: RecordsBoolExp;
 };
-
 
 /** mutation root */
 export type MutationRootUpdateRecordsByPkArgs = {
@@ -776,7 +763,7 @@ export enum OrderBy {
   /** in the descending order, nulls first */
   DescNullsFirst = 'desc_nulls_first',
   /** in the descending order, nulls last */
-  DescNullsLast = 'desc_nulls_last'
+  DescNullsLast = 'desc_nulls_last',
 }
 
 /** query root */
@@ -808,7 +795,6 @@ export type QueryRoot = {
   Records_by_pk?: Maybe<Records>;
 };
 
-
 /** query root */
 export type QueryRootAccountTypesArgs = {
   distinct_on?: Maybe<Array<AccountTypesSelectColumn>>;
@@ -818,12 +804,10 @@ export type QueryRootAccountTypesArgs = {
   where?: Maybe<AccountTypesBoolExp>;
 };
 
-
 /** query root */
 export type QueryRootAccountTypesByPkArgs = {
   id: Scalars['Int'];
 };
-
 
 /** query root */
 export type QueryRootAccountsArgs = {
@@ -834,12 +818,10 @@ export type QueryRootAccountsArgs = {
   where?: Maybe<AccountsBoolExp>;
 };
 
-
 /** query root */
 export type QueryRootAccountsByPkArgs = {
   id: Scalars['Int'];
 };
-
 
 /** query root */
 export type QueryRootCurrenciesArgs = {
@@ -850,12 +832,10 @@ export type QueryRootCurrenciesArgs = {
   where?: Maybe<CurrenciesBoolExp>;
 };
 
-
 /** query root */
 export type QueryRootCurrenciesByPkArgs = {
   id: Scalars['Int'];
 };
-
 
 /** query root */
 export type QueryRootPaymentTypesArgs = {
@@ -866,12 +846,10 @@ export type QueryRootPaymentTypesArgs = {
   where?: Maybe<PaymentTypesBoolExp>;
 };
 
-
 /** query root */
 export type QueryRootPaymentTypesByPkArgs = {
   id: Scalars['Int'];
 };
-
 
 /** query root */
 export type QueryRootRecordCategoriesArgs = {
@@ -882,12 +860,10 @@ export type QueryRootRecordCategoriesArgs = {
   where?: Maybe<RecordCategoriesBoolExp>;
 };
 
-
 /** query root */
 export type QueryRootRecordCategoriesByPkArgs = {
   id: Scalars['Int'];
 };
-
 
 /** query root */
 export type QueryRootRecordsArgs = {
@@ -897,7 +873,6 @@ export type QueryRootRecordsArgs = {
   order_by?: Maybe<Array<RecordsOrderBy>>;
   where?: Maybe<RecordsBoolExp>;
 };
-
 
 /** query root */
 export type QueryRootRecordsByPkArgs = {
@@ -933,7 +908,6 @@ export type SubscriptionRoot = {
   Records_by_pk?: Maybe<Records>;
 };
 
-
 /** subscription root */
 export type SubscriptionRootAccountTypesArgs = {
   distinct_on?: Maybe<Array<AccountTypesSelectColumn>>;
@@ -943,12 +917,10 @@ export type SubscriptionRootAccountTypesArgs = {
   where?: Maybe<AccountTypesBoolExp>;
 };
 
-
 /** subscription root */
 export type SubscriptionRootAccountTypesByPkArgs = {
   id: Scalars['Int'];
 };
-
 
 /** subscription root */
 export type SubscriptionRootAccountsArgs = {
@@ -959,12 +931,10 @@ export type SubscriptionRootAccountsArgs = {
   where?: Maybe<AccountsBoolExp>;
 };
 
-
 /** subscription root */
 export type SubscriptionRootAccountsByPkArgs = {
   id: Scalars['Int'];
 };
-
 
 /** subscription root */
 export type SubscriptionRootCurrenciesArgs = {
@@ -975,12 +945,10 @@ export type SubscriptionRootCurrenciesArgs = {
   where?: Maybe<CurrenciesBoolExp>;
 };
 
-
 /** subscription root */
 export type SubscriptionRootCurrenciesByPkArgs = {
   id: Scalars['Int'];
 };
-
 
 /** subscription root */
 export type SubscriptionRootPaymentTypesArgs = {
@@ -991,12 +959,10 @@ export type SubscriptionRootPaymentTypesArgs = {
   where?: Maybe<PaymentTypesBoolExp>;
 };
 
-
 /** subscription root */
 export type SubscriptionRootPaymentTypesByPkArgs = {
   id: Scalars['Int'];
 };
-
 
 /** subscription root */
 export type SubscriptionRootRecordCategoriesArgs = {
@@ -1007,12 +973,10 @@ export type SubscriptionRootRecordCategoriesArgs = {
   where?: Maybe<RecordCategoriesBoolExp>;
 };
 
-
 /** subscription root */
 export type SubscriptionRootRecordCategoriesByPkArgs = {
   id: Scalars['Int'];
 };
-
 
 /** subscription root */
 export type SubscriptionRootRecordsArgs = {
@@ -1023,12 +987,10 @@ export type SubscriptionRootRecordsArgs = {
   where?: Maybe<RecordsBoolExp>;
 };
 
-
 /** subscription root */
 export type SubscriptionRootRecordsByPkArgs = {
   id: Scalars['bigint'];
 };
-
 
 /** expression to compare columns of type timestamptz. All fields are combined with logical 'AND'. */
 export type TimestamptzComparisonExp = {
@@ -1043,86 +1005,107 @@ export type TimestamptzComparisonExp = {
   _nin?: Maybe<Array<Scalars['timestamptz']>>;
 };
 
-export type GetAccountTypesQueryVariables = Exact<{ [key: string]: never; }>;
+export type GetAccountTypesQueryVariables = Exact<{ [key: string]: never }>;
 
+export type GetAccountTypesQuery = { __typename?: 'query_root' } & {
+  AccountTypes: Array<
+    { __typename?: 'AccountTypes' } & Pick<
+      AccountTypes,
+      'createdAt' | 'icon' | 'id' | 'name'
+    >
+  >;
+};
 
-export type GetAccountTypesQuery = (
-  { __typename?: 'query_root' }
-  & { AccountTypes: Array<(
-    { __typename?: 'AccountTypes' }
-    & Pick<AccountTypes, 'createdAt' | 'icon' | 'id' | 'name'>
-  )> }
-);
+export type GetAccountsQueryVariables = Exact<{ [key: string]: never }>;
 
-export type GetAccountsQueryVariables = Exact<{ [key: string]: never; }>;
+export type GetAccountsQuery = { __typename?: 'query_root' } & {
+  Accounts: Array<
+    { __typename?: 'Accounts' } & Pick<
+      Accounts,
+      | 'accountTypeId'
+      | 'amount'
+      | 'createdAt'
+      | 'currencyId'
+      | 'createdBy'
+      | 'dueDay'
+      | 'id'
+      | 'limit'
+      | 'name'
+      | 'updatedAt'
+    >
+  >;
+};
 
+export type GetCurrenciesQueryVariables = Exact<{ [key: string]: never }>;
 
-export type GetAccountsQuery = (
-  { __typename?: 'query_root' }
-  & { Accounts: Array<(
-    { __typename?: 'Accounts' }
-    & Pick<Accounts, 'accountTypeId' | 'amount' | 'createdAt' | 'currencyId' | 'createdBy' | 'dueDay' | 'id' | 'limit' | 'name' | 'updatedAt'>
-  )> }
-);
+export type GetCurrenciesQuery = { __typename?: 'query_root' } & {
+  Currencies: Array<
+    { __typename?: 'Currencies' } & Pick<
+      Currencies,
+      'name' | 'isDefault' | 'id' | 'exchangeRate' | 'createdAt'
+    >
+  >;
+};
 
-export type GetCurrenciesQueryVariables = Exact<{ [key: string]: never; }>;
+export type GetPaymentTypesQueryVariables = Exact<{ [key: string]: never }>;
 
+export type GetPaymentTypesQuery = { __typename?: 'query_root' } & {
+  PaymentTypes: Array<
+    { __typename?: 'PaymentTypes' } & Pick<
+      PaymentTypes,
+      'createdAt' | 'id' | 'name'
+    >
+  >;
+};
 
-export type GetCurrenciesQuery = (
-  { __typename?: 'query_root' }
-  & { Currencies: Array<(
-    { __typename?: 'Currencies' }
-    & Pick<Currencies, 'name' | 'isDefault' | 'id' | 'exchangeRate' | 'createdAt'>
-  )> }
-);
+export type GetRecordCategoriesQueryVariables = Exact<{ [key: string]: never }>;
 
-export type GetPaymentTypesQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type GetPaymentTypesQuery = (
-  { __typename?: 'query_root' }
-  & { PaymentTypes: Array<(
-    { __typename?: 'PaymentTypes' }
-    & Pick<PaymentTypes, 'createdAt' | 'id' | 'name'>
-  )> }
-);
-
-export type GetRecordCategoriesQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type GetRecordCategoriesQuery = (
-  { __typename?: 'query_root' }
-  & { RecordCategories: Array<(
-    { __typename?: 'RecordCategories' }
-    & Pick<RecordCategories, 'color' | 'icon' | 'id' | 'name' | 'parent'>
-  )> }
-);
+export type GetRecordCategoriesQuery = { __typename?: 'query_root' } & {
+  RecordCategories: Array<
+    { __typename?: 'RecordCategories' } & Pick<
+      RecordCategories,
+      'color' | 'icon' | 'id' | 'name' | 'parent'
+    >
+  >;
+};
 
 export type GetRecordsQueryVariables = Exact<{
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
 }>;
 
-
-export type GetRecordsQuery = (
-  { __typename?: 'query_root' }
-  & { Records: Array<(
-    { __typename?: 'Records' }
-    & Pick<Records, 'accountIdFrom' | 'accountIdTo' | 'amount' | 'createdAt' | 'createdBy' | 'currencyId' | 'date' | 'id' | 'note' | 'payee' | 'paymentStatus' | 'paymentTypeId' | 'recordCategoryId' | 'type'>
-  )> }
-);
-
+export type GetRecordsQuery = { __typename?: 'query_root' } & {
+  Records: Array<
+    { __typename?: 'Records' } & Pick<
+      Records,
+      | 'accountIdFrom'
+      | 'accountIdTo'
+      | 'amount'
+      | 'createdAt'
+      | 'createdBy'
+      | 'currencyId'
+      | 'date'
+      | 'id'
+      | 'note'
+      | 'payee'
+      | 'paymentStatus'
+      | 'paymentTypeId'
+      | 'recordCategoryId'
+      | 'type'
+    >
+  >;
+};
 
 export const GetAccountTypesDocument = gql`
-    query getAccountTypes {
-  AccountTypes {
-    createdAt
-    icon
-    id
-    name
+  query getAccountTypes {
+    AccountTypes {
+      createdAt
+      icon
+      id
+      name
+    }
   }
-}
-    `;
+`;
 
 /**
  * __useGetAccountTypesQuery__
@@ -1139,31 +1122,54 @@ export const GetAccountTypesDocument = gql`
  *   },
  * });
  */
-export function useGetAccountTypesQuery(baseOptions?: Apollo.QueryHookOptions<GetAccountTypesQuery, GetAccountTypesQueryVariables>) {
-        return Apollo.useQuery<GetAccountTypesQuery, GetAccountTypesQueryVariables>(GetAccountTypesDocument, baseOptions);
-      }
-export function useGetAccountTypesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetAccountTypesQuery, GetAccountTypesQueryVariables>) {
-          return Apollo.useLazyQuery<GetAccountTypesQuery, GetAccountTypesQueryVariables>(GetAccountTypesDocument, baseOptions);
-        }
-export type GetAccountTypesQueryHookResult = ReturnType<typeof useGetAccountTypesQuery>;
-export type GetAccountTypesLazyQueryHookResult = ReturnType<typeof useGetAccountTypesLazyQuery>;
-export type GetAccountTypesQueryResult = Apollo.QueryResult<GetAccountTypesQuery, GetAccountTypesQueryVariables>;
-export const GetAccountsDocument = gql`
-    query getAccounts {
-  Accounts {
-    accountTypeId
-    amount
-    createdAt
-    currencyId
-    createdBy
-    dueDay
-    id
-    limit
-    name
-    updatedAt
-  }
+export function useGetAccountTypesQuery(
+  baseOptions?: Apollo.QueryHookOptions<
+    GetAccountTypesQuery,
+    GetAccountTypesQueryVariables
+  >
+) {
+  return Apollo.useQuery<GetAccountTypesQuery, GetAccountTypesQueryVariables>(
+    GetAccountTypesDocument,
+    baseOptions
+  );
 }
-    `;
+export function useGetAccountTypesLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    GetAccountTypesQuery,
+    GetAccountTypesQueryVariables
+  >
+) {
+  return Apollo.useLazyQuery<
+    GetAccountTypesQuery,
+    GetAccountTypesQueryVariables
+  >(GetAccountTypesDocument, baseOptions);
+}
+export type GetAccountTypesQueryHookResult = ReturnType<
+  typeof useGetAccountTypesQuery
+>;
+export type GetAccountTypesLazyQueryHookResult = ReturnType<
+  typeof useGetAccountTypesLazyQuery
+>;
+export type GetAccountTypesQueryResult = Apollo.QueryResult<
+  GetAccountTypesQuery,
+  GetAccountTypesQueryVariables
+>;
+export const GetAccountsDocument = gql`
+  query getAccounts {
+    Accounts {
+      accountTypeId
+      amount
+      createdAt
+      currencyId
+      createdBy
+      dueDay
+      id
+      limit
+      name
+      updatedAt
+    }
+  }
+`;
 
 /**
  * __useGetAccountsQuery__
@@ -1180,26 +1186,47 @@ export const GetAccountsDocument = gql`
  *   },
  * });
  */
-export function useGetAccountsQuery(baseOptions?: Apollo.QueryHookOptions<GetAccountsQuery, GetAccountsQueryVariables>) {
-        return Apollo.useQuery<GetAccountsQuery, GetAccountsQueryVariables>(GetAccountsDocument, baseOptions);
-      }
-export function useGetAccountsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetAccountsQuery, GetAccountsQueryVariables>) {
-          return Apollo.useLazyQuery<GetAccountsQuery, GetAccountsQueryVariables>(GetAccountsDocument, baseOptions);
-        }
-export type GetAccountsQueryHookResult = ReturnType<typeof useGetAccountsQuery>;
-export type GetAccountsLazyQueryHookResult = ReturnType<typeof useGetAccountsLazyQuery>;
-export type GetAccountsQueryResult = Apollo.QueryResult<GetAccountsQuery, GetAccountsQueryVariables>;
-export const GetCurrenciesDocument = gql`
-    query getCurrencies {
-  Currencies {
-    name
-    isDefault
-    id
-    exchangeRate
-    createdAt
-  }
+export function useGetAccountsQuery(
+  baseOptions?: Apollo.QueryHookOptions<
+    GetAccountsQuery,
+    GetAccountsQueryVariables
+  >
+) {
+  return Apollo.useQuery<GetAccountsQuery, GetAccountsQueryVariables>(
+    GetAccountsDocument,
+    baseOptions
+  );
 }
-    `;
+export function useGetAccountsLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    GetAccountsQuery,
+    GetAccountsQueryVariables
+  >
+) {
+  return Apollo.useLazyQuery<GetAccountsQuery, GetAccountsQueryVariables>(
+    GetAccountsDocument,
+    baseOptions
+  );
+}
+export type GetAccountsQueryHookResult = ReturnType<typeof useGetAccountsQuery>;
+export type GetAccountsLazyQueryHookResult = ReturnType<
+  typeof useGetAccountsLazyQuery
+>;
+export type GetAccountsQueryResult = Apollo.QueryResult<
+  GetAccountsQuery,
+  GetAccountsQueryVariables
+>;
+export const GetCurrenciesDocument = gql`
+  query getCurrencies {
+    Currencies {
+      name
+      isDefault
+      id
+      exchangeRate
+      createdAt
+    }
+  }
+`;
 
 /**
  * __useGetCurrenciesQuery__
@@ -1216,24 +1243,47 @@ export const GetCurrenciesDocument = gql`
  *   },
  * });
  */
-export function useGetCurrenciesQuery(baseOptions?: Apollo.QueryHookOptions<GetCurrenciesQuery, GetCurrenciesQueryVariables>) {
-        return Apollo.useQuery<GetCurrenciesQuery, GetCurrenciesQueryVariables>(GetCurrenciesDocument, baseOptions);
-      }
-export function useGetCurrenciesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetCurrenciesQuery, GetCurrenciesQueryVariables>) {
-          return Apollo.useLazyQuery<GetCurrenciesQuery, GetCurrenciesQueryVariables>(GetCurrenciesDocument, baseOptions);
-        }
-export type GetCurrenciesQueryHookResult = ReturnType<typeof useGetCurrenciesQuery>;
-export type GetCurrenciesLazyQueryHookResult = ReturnType<typeof useGetCurrenciesLazyQuery>;
-export type GetCurrenciesQueryResult = Apollo.QueryResult<GetCurrenciesQuery, GetCurrenciesQueryVariables>;
-export const GetPaymentTypesDocument = gql`
-    query getPaymentTypes {
-  PaymentTypes {
-    createdAt
-    id
-    name
-  }
+export function useGetCurrenciesQuery(
+  baseOptions?: Apollo.QueryHookOptions<
+    GetCurrenciesQuery,
+    GetCurrenciesQueryVariables
+  >
+) {
+  return Apollo.useQuery<GetCurrenciesQuery, GetCurrenciesQueryVariables>(
+    GetCurrenciesDocument,
+    baseOptions
+  );
 }
-    `;
+export function useGetCurrenciesLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    GetCurrenciesQuery,
+    GetCurrenciesQueryVariables
+  >
+) {
+  return Apollo.useLazyQuery<GetCurrenciesQuery, GetCurrenciesQueryVariables>(
+    GetCurrenciesDocument,
+    baseOptions
+  );
+}
+export type GetCurrenciesQueryHookResult = ReturnType<
+  typeof useGetCurrenciesQuery
+>;
+export type GetCurrenciesLazyQueryHookResult = ReturnType<
+  typeof useGetCurrenciesLazyQuery
+>;
+export type GetCurrenciesQueryResult = Apollo.QueryResult<
+  GetCurrenciesQuery,
+  GetCurrenciesQueryVariables
+>;
+export const GetPaymentTypesDocument = gql`
+  query getPaymentTypes {
+    PaymentTypes {
+      createdAt
+      id
+      name
+    }
+  }
+`;
 
 /**
  * __useGetPaymentTypesQuery__
@@ -1250,26 +1300,49 @@ export const GetPaymentTypesDocument = gql`
  *   },
  * });
  */
-export function useGetPaymentTypesQuery(baseOptions?: Apollo.QueryHookOptions<GetPaymentTypesQuery, GetPaymentTypesQueryVariables>) {
-        return Apollo.useQuery<GetPaymentTypesQuery, GetPaymentTypesQueryVariables>(GetPaymentTypesDocument, baseOptions);
-      }
-export function useGetPaymentTypesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetPaymentTypesQuery, GetPaymentTypesQueryVariables>) {
-          return Apollo.useLazyQuery<GetPaymentTypesQuery, GetPaymentTypesQueryVariables>(GetPaymentTypesDocument, baseOptions);
-        }
-export type GetPaymentTypesQueryHookResult = ReturnType<typeof useGetPaymentTypesQuery>;
-export type GetPaymentTypesLazyQueryHookResult = ReturnType<typeof useGetPaymentTypesLazyQuery>;
-export type GetPaymentTypesQueryResult = Apollo.QueryResult<GetPaymentTypesQuery, GetPaymentTypesQueryVariables>;
-export const GetRecordCategoriesDocument = gql`
-    query getRecordCategories {
-  RecordCategories {
-    color
-    icon
-    id
-    name
-    parent
-  }
+export function useGetPaymentTypesQuery(
+  baseOptions?: Apollo.QueryHookOptions<
+    GetPaymentTypesQuery,
+    GetPaymentTypesQueryVariables
+  >
+) {
+  return Apollo.useQuery<GetPaymentTypesQuery, GetPaymentTypesQueryVariables>(
+    GetPaymentTypesDocument,
+    baseOptions
+  );
 }
-    `;
+export function useGetPaymentTypesLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    GetPaymentTypesQuery,
+    GetPaymentTypesQueryVariables
+  >
+) {
+  return Apollo.useLazyQuery<
+    GetPaymentTypesQuery,
+    GetPaymentTypesQueryVariables
+  >(GetPaymentTypesDocument, baseOptions);
+}
+export type GetPaymentTypesQueryHookResult = ReturnType<
+  typeof useGetPaymentTypesQuery
+>;
+export type GetPaymentTypesLazyQueryHookResult = ReturnType<
+  typeof useGetPaymentTypesLazyQuery
+>;
+export type GetPaymentTypesQueryResult = Apollo.QueryResult<
+  GetPaymentTypesQuery,
+  GetPaymentTypesQueryVariables
+>;
+export const GetRecordCategoriesDocument = gql`
+  query getRecordCategories {
+    RecordCategories {
+      color
+      icon
+      id
+      name
+      parent
+    }
+  }
+`;
 
 /**
  * __useGetRecordCategoriesQuery__
@@ -1286,35 +1359,58 @@ export const GetRecordCategoriesDocument = gql`
  *   },
  * });
  */
-export function useGetRecordCategoriesQuery(baseOptions?: Apollo.QueryHookOptions<GetRecordCategoriesQuery, GetRecordCategoriesQueryVariables>) {
-        return Apollo.useQuery<GetRecordCategoriesQuery, GetRecordCategoriesQueryVariables>(GetRecordCategoriesDocument, baseOptions);
-      }
-export function useGetRecordCategoriesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetRecordCategoriesQuery, GetRecordCategoriesQueryVariables>) {
-          return Apollo.useLazyQuery<GetRecordCategoriesQuery, GetRecordCategoriesQueryVariables>(GetRecordCategoriesDocument, baseOptions);
-        }
-export type GetRecordCategoriesQueryHookResult = ReturnType<typeof useGetRecordCategoriesQuery>;
-export type GetRecordCategoriesLazyQueryHookResult = ReturnType<typeof useGetRecordCategoriesLazyQuery>;
-export type GetRecordCategoriesQueryResult = Apollo.QueryResult<GetRecordCategoriesQuery, GetRecordCategoriesQueryVariables>;
-export const GetRecordsDocument = gql`
-    query getRecords($limit: Int = 10, $offset: Int = 0) {
-  Records(limit: $limit, offset: $offset, order_by: {createdAt: desc}) {
-    accountIdFrom
-    accountIdTo
-    amount
-    createdAt
-    createdBy
-    currencyId
-    date
-    id
-    note
-    payee
-    paymentStatus
-    paymentTypeId
-    recordCategoryId
-    type
-  }
+export function useGetRecordCategoriesQuery(
+  baseOptions?: Apollo.QueryHookOptions<
+    GetRecordCategoriesQuery,
+    GetRecordCategoriesQueryVariables
+  >
+) {
+  return Apollo.useQuery<
+    GetRecordCategoriesQuery,
+    GetRecordCategoriesQueryVariables
+  >(GetRecordCategoriesDocument, baseOptions);
 }
-    `;
+export function useGetRecordCategoriesLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    GetRecordCategoriesQuery,
+    GetRecordCategoriesQueryVariables
+  >
+) {
+  return Apollo.useLazyQuery<
+    GetRecordCategoriesQuery,
+    GetRecordCategoriesQueryVariables
+  >(GetRecordCategoriesDocument, baseOptions);
+}
+export type GetRecordCategoriesQueryHookResult = ReturnType<
+  typeof useGetRecordCategoriesQuery
+>;
+export type GetRecordCategoriesLazyQueryHookResult = ReturnType<
+  typeof useGetRecordCategoriesLazyQuery
+>;
+export type GetRecordCategoriesQueryResult = Apollo.QueryResult<
+  GetRecordCategoriesQuery,
+  GetRecordCategoriesQueryVariables
+>;
+export const GetRecordsDocument = gql`
+  query getRecords($limit: Int = 10, $offset: Int = 0) {
+    Records(limit: $limit, offset: $offset, order_by: { createdAt: desc }) {
+      accountIdFrom
+      accountIdTo
+      amount
+      createdAt
+      createdBy
+      currencyId
+      date
+      id
+      note
+      payee
+      paymentStatus
+      paymentTypeId
+      recordCategoryId
+      type
+    }
+  }
+`;
 
 /**
  * __useGetRecordsQuery__
@@ -1333,12 +1429,33 @@ export const GetRecordsDocument = gql`
  *   },
  * });
  */
-export function useGetRecordsQuery(baseOptions?: Apollo.QueryHookOptions<GetRecordsQuery, GetRecordsQueryVariables>) {
-        return Apollo.useQuery<GetRecordsQuery, GetRecordsQueryVariables>(GetRecordsDocument, baseOptions);
-      }
-export function useGetRecordsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetRecordsQuery, GetRecordsQueryVariables>) {
-          return Apollo.useLazyQuery<GetRecordsQuery, GetRecordsQueryVariables>(GetRecordsDocument, baseOptions);
-        }
+export function useGetRecordsQuery(
+  baseOptions?: Apollo.QueryHookOptions<
+    GetRecordsQuery,
+    GetRecordsQueryVariables
+  >
+) {
+  return Apollo.useQuery<GetRecordsQuery, GetRecordsQueryVariables>(
+    GetRecordsDocument,
+    baseOptions
+  );
+}
+export function useGetRecordsLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    GetRecordsQuery,
+    GetRecordsQueryVariables
+  >
+) {
+  return Apollo.useLazyQuery<GetRecordsQuery, GetRecordsQueryVariables>(
+    GetRecordsDocument,
+    baseOptions
+  );
+}
 export type GetRecordsQueryHookResult = ReturnType<typeof useGetRecordsQuery>;
-export type GetRecordsLazyQueryHookResult = ReturnType<typeof useGetRecordsLazyQuery>;
-export type GetRecordsQueryResult = Apollo.QueryResult<GetRecordsQuery, GetRecordsQueryVariables>;
+export type GetRecordsLazyQueryHookResult = ReturnType<
+  typeof useGetRecordsLazyQuery
+>;
+export type GetRecordsQueryResult = Apollo.QueryResult<
+  GetRecordsQuery,
+  GetRecordsQueryVariables
+>;
