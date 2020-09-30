@@ -26,7 +26,7 @@ const AccountTypesSelectContent = ({
       <Select
         labelId="type-label"
         id="type-select"
-        value={`${value}`}
+        value={`${value === null ? '' : value}`}
         onChange={(event) => setValue(+event.target.value)}
       >
         {accountTypes.map((accountType) => (

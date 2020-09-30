@@ -1,16 +1,7 @@
 import React, { useState } from 'react';
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-
-import TextField from '@material-ui/core/TextField';
-import FormControl from '@material-ui/core/FormControl';
-import InputLabel from '@material-ui/core/InputLabel';
-import Select from '@material-ui/core/Select';
-import MenuItem from '@material-ui/core/MenuItem';
 import { CreateEntity, Expense } from '../shared/symbols';
 import { buildCreateEntityExpense } from '../shared/builders';
-import useExpenseTypes from '../shared/use-expense-types.hook';
 import { withApollo } from '../hoc/withApollo';
-import { useQuery } from '@apollo/react-hooks';
 import { useIndexStyles } from '../styles';
 import { AccountTypesSelect } from '../components/index/AccountTypesSelect';
 import { withAuthenticated } from '../hoc/withAuthenticated';
@@ -21,7 +12,7 @@ const Index = () => {
   const [expense, setExpense] = useState<CreateEntity<Expense>>(
     buildCreateEntityExpense()
   );
-  const [accountType, setAccountType] = useState('');
+  const [accountType, setAccountType] = useState<number>(null);
   // const handleControlChange = (field: keyof CreateEntity<Expense>) => (
   //   event: React.ChangeEvent<{ name?: string; value: unknown }>
   // ) => {
