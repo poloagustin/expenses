@@ -9,11 +9,16 @@ import { SubscriptionClient } from 'subscriptions-transport-ws';
 import auth0 from './auth0';
 import { ServerError } from 'apollo-link-http-common';
 import { ApolloLink } from 'apollo-boost';
+import getConfig from 'next/config';
+
+const { publicRuntimeConfig } = getConfig();
+const { subscriptionUri, appHost } = publicRuntimeConfig;
+
 let accessToken = null;
 
 const requestAccessToken = async () => {
   if (accessToken) return;
-  const res = await fetch(`${process.env.APP_HOST}/api/session`);
+  const res = await fetch(`${appHost}/api/session`);
   if (res.ok) {
     const json = await res.json();
     accessToken = json.accessToken;
@@ -44,7 +49,7 @@ const createHttpLink = (headers: any) => {
 
 const createWSLink = () => {
   return new WebSocketLink(
-    new SubscriptionClient(process.env.NX_BACKEND_SUBSCRIPTION_URI, {
+    new SubscriptionClient(subscriptionUri, {
       lazy: true,
       reconnect: true,
       connectionParams: async () => {

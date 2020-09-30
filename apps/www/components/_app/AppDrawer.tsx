@@ -10,6 +10,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import Divider from '@material-ui/core/Divider';
+import AccountBalanceWalletIcon from '@material-ui/icons/AccountBalanceWallet';
 
 export interface AppDrawerProps {
   open: boolean;
@@ -21,7 +22,10 @@ export const AppDrawer = ({ open }: AppDrawerProps) => {
     path: string;
     label: string;
     icon: typeof SvgIcon;
-  }[] = [{ path: '/api/login', label: 'Login', icon: ExitToAppIcon }];
+  }[] = [
+    { path: '/accounts', label: 'Accounts', icon: AccountBalanceWalletIcon },
+    { path: '/api/login', label: 'Login', icon: ExitToAppIcon },
+  ];
   const router = useRouter();
 
   return (

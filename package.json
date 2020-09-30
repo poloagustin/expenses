@@ -26,7 +26,7 @@
     "workspace-schematic": "nx workspace-schematic",
     "dep-graph": "nx dep-graph",
     "help": "nx help",
-    "graphql-codegen": "graphql-codegen --config apps/www/codegen.yml"
+    "graphql-codegen": "graphql-codegen --config apps/www/codegen.yml -r dotenv/config"
   },
   "private": true,
   "dependencies": {

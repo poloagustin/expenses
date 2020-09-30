@@ -22,11 +22,11 @@ const AccountTypesSelectContent = ({
 
   return (
     <FormControl className={classes.formControl}>
-      <InputLabel id="type-label">Age</InputLabel>
+      <InputLabel id="type-label">Account Type</InputLabel>
       <Select
         labelId="type-label"
         id="type-select"
-        value={value}
+        value={`${value}`}
         onChange={(event) => setValue(+event.target.value)}
       >
         {accountTypes.map((accountType) => (
@@ -39,10 +39,13 @@ const AccountTypesSelectContent = ({
   );
 };
 
+const Error = ({ error }) => <div>{JSON.stringify(error)}</div>;
+
 export const AccountTypesSelect = (props: AccountTypesSelectProps) => {
   return (
     <GetAccountTypesQuery
       Component={AccountTypesSelectContent}
+      Error={Error}
       componentProps={props}
     />
   );

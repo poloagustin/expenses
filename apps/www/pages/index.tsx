@@ -21,7 +21,7 @@ const Index = () => {
   const [expense, setExpense] = useState<CreateEntity<Expense>>(
     buildCreateEntityExpense()
   );
-  const [accountType, setAccountType] = useState(-1);
+  const [accountType, setAccountType] = useState('');
   // const handleControlChange = (field: keyof CreateEntity<Expense>) => (
   //   event: React.ChangeEvent<{ name?: string; value: unknown }>
   // ) => {

@@ -8,7 +8,7 @@ export const useAppStyles = makeStyles((theme: Theme) =>
       display: 'flex',
     },
     appBar: {
-      zIndex: theme.zIndex.drawer + 1,
+      zIndex: 1300, // theme.zIndex.drawer + 1,
       transition: theme.transitions.create(['margin', 'width'], {
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.leavingScreen,

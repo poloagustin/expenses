@@ -87,7 +87,11 @@ export interface WithApolloOptions {
  * that provides the apolloContext
  * to a next.js Page or AppTree.
  */
-export const withApollo = ({ ssr }: WithApolloOptions = { ssr: true }) => (
+export const withApollo = (
+  { ssr }: WithApolloOptions = {
+    ssr: true,
+  }
+) => (
   PageComponent: any // TODO: Find the correct type
 ) => {
   const WithApollo = ({ apolloClient, apolloState, ...pageProps }: any) => {

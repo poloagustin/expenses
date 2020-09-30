@@ -1,15 +1,20 @@
 overwrite: true
 schema:
-  - 'https://touching-joey-62.hasura.app/v1/graphql':
+  - ${NX_BACKEND_URI}:
       headers:
-        x-hasura-admin-secret: '${env:HASURA_GRAPHQL_ADMIN_SECRET}'
-documents: 'apps/www/src/**/*.graphql'
+        authorization: 'Bearer ${AUTH_TOKEN}'
+documents: apps/www/graphql/**.ts
 generates:
-  apps/www/src/generated/graphql.tsx:
+  apps/www/generated/graphql.ts:
     plugins:
-      - 'typescript'
-      - 'typescript-operations'
-      - 'typescript-react-apollo'
-  ./graphql.schema.json:
+      - typescript
+      - typescript-operations
+      - typescript-react-apollo
+    config:
+      withHooks: true
+      withMutationFn: true
+      namingConvention:
+        transformUnderscore: true
+  apps/www/generated/graphql.schema.json:
     plugins:
       - 'introspection'
