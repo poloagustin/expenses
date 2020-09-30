@@ -52,12 +52,12 @@ jobs:
       - name: Build
         run: npm run affected:build -- --base=origin/master
       - name: Test
-        run: npm run affected:test -- --base=origin/master --codeCoverage --coverageDirectory=coverage
+        run: npm run affected:test -- --base=origin/master --codeCoverage --coverageDirectory="../../coverage"
       - name: Archive code coverage results
         uses: actions/upload-artifact@v2
         with:
           name: code-coverage-report
-          path: coverage
+          path: apps/www/coverage
       - name: Run codecov
         uses: codecov/codecov-action@v1
         with:
