@@ -35,3 +35,11 @@ export const ADD_ACCOUNT = gql`
     }
   }
 `;
+
+export const DELETE_ACCOUNT = gql`
+  mutation DeleteAccount($id: Int!) {
+    delete_Accounts_by_pk(id: $id) {
+      id
+    }
+  }
+`;

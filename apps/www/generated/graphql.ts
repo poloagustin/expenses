@@ -1071,6 +1071,19 @@ export type AddAccountMutation = (
   )> }
 );
 
+export type DeleteAccountMutationVariables = Exact<{
+  id: Scalars['Int'];
+}>;
+
+
+export type DeleteAccountMutation = (
+  { __typename?: 'mutation_root' }
+  & { delete_Accounts_by_pk?: Maybe<(
+    { __typename?: 'Accounts' }
+    & Pick<Accounts, 'id'>
+  )> }
+);
+
 export type GetAccountTypesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -1189,6 +1202,38 @@ export function useAddAccountMutation(baseOptions?: Apollo.MutationHookOptions<A
 export type AddAccountMutationHookResult = ReturnType<typeof useAddAccountMutation>;
 export type AddAccountMutationResult = Apollo.MutationResult<AddAccountMutation>;
 export type AddAccountMutationOptions = Apollo.BaseMutationOptions<AddAccountMutation, AddAccountMutationVariables>;
+export const DeleteAccountDocument = gql`
+    mutation DeleteAccount($id: Int!) {
+  delete_Accounts_by_pk(id: $id) {
+    id
+  }
+}
+    `;
+export type DeleteAccountMutationFn = Apollo.MutationFunction<DeleteAccountMutation, DeleteAccountMutationVariables>;
+
+/**
+ * __useDeleteAccountMutation__
+ *
+ * To run a mutation, you first call `useDeleteAccountMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useDeleteAccountMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [deleteAccountMutation, { data, loading, error }] = useDeleteAccountMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useDeleteAccountMutation(baseOptions?: Apollo.MutationHookOptions<DeleteAccountMutation, DeleteAccountMutationVariables>) {
+        return Apollo.useMutation<DeleteAccountMutation, DeleteAccountMutationVariables>(DeleteAccountDocument, baseOptions);
+      }
+export type DeleteAccountMutationHookResult = ReturnType<typeof useDeleteAccountMutation>;
+export type DeleteAccountMutationResult = Apollo.MutationResult<DeleteAccountMutation>;
+export type DeleteAccountMutationOptions = Apollo.BaseMutationOptions<DeleteAccountMutation, DeleteAccountMutationVariables>;
 export const GetAccountTypesDocument = gql`
     query getAccountTypes {
   AccountTypes {
