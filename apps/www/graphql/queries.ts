@@ -24,6 +24,7 @@ export const GET_ACCOUNTS = gql`
       limit
       name
       updatedAt
+      color
     }
   }
 `;
