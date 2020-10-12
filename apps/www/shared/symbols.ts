@@ -1,9 +1,10 @@
 import { ApolloClient } from '@apollo/client';
+import { Accounts } from '../generated/graphql';
 
 export type TApolloClient<TCacheShape> = ApolloClient<TCacheShape>;
 
-export interface BaseEntity {
-  id: string;
+export interface BaseEntity<T = string> {
+  id: T;
   createdAt: string;
   createdBy: string;
 }
@@ -21,7 +22,7 @@ export interface Expense extends KeyValue {
   amount: number;
 }
 
-export type CreateEntity<T extends BaseEntity> = Omit<
+export type CreateEntity<T extends BaseEntity<TId>, TId = string> = Omit<
   T,
   'id' | 'createdAt' | 'createdBy'
 >;
@@ -43,3 +44,10 @@ export type RecordType =
   | RecordTypeExpense
   | RecordTypeIncome
   | RecordTypeTransfer;
+
+export type NewAccount = Omit<CreateEntity<Accounts, number>, 'updatedAt'>;
+
+export interface FormControlProps<T = number> {
+  value: T;
+  setValue: (value: T) => void;
+}
