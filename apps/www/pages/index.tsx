@@ -3,7 +3,6 @@ import { CreateEntity, Expense } from '../shared/symbols';
 import { buildCreateEntityExpense } from '../shared/builders';
 import { withApollo } from '../hoc/withApollo';
 import { useIndexStyles } from '../styles';
-import { AccountTypesSelect } from '../components/index/AccountTypesSelect';
 import { withAuthenticated } from '../hoc/withAuthenticated';
 
 const Index = () => {
@@ -30,7 +29,6 @@ const Index = () => {
 
   return (
     <form className={classes.root} noValidate autoComplete="off">
-      <AccountTypesSelect value={accountType} setValue={setAccountType} />
       {/* <TextField
         id="name"
         label="Descripcion del gasto"

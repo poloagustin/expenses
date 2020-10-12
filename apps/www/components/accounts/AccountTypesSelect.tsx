@@ -41,7 +41,7 @@ const AccountTypesSelectContent = ({
 
 const Error = ({ error }) => <div>{JSON.stringify(error)}</div>;
 
-export const AccountTypesSelect = (props: AccountTypesSelectProps) => {
+const AccountTypesSelect = (props: AccountTypesSelectProps) => {
   return (
     <GetAccountTypesQuery
       Component={AccountTypesSelectContent}
@@ -50,3 +50,5 @@ export const AccountTypesSelect = (props: AccountTypesSelectProps) => {
     />
   );
 };
+
+export default AccountTypesSelect;
