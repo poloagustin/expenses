@@ -57,7 +57,7 @@
     "@graphql-codegen/typescript-react-apollo": "2.0.6",
     "@nrwl/cypress": "10.0.6",
     "@nrwl/eslint-plugin-nx": "10.0.6",
-    "@nrwl/jest": "10.0.6",
+    "@nrwl/jest": "10.3.0",
     "@nrwl/next": "10.0.6",
     "@nrwl/node": "^10.2.0",
     "@nrwl/react": "10.0.6",
