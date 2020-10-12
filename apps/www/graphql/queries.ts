@@ -29,6 +29,24 @@ export const GET_ACCOUNTS = gql`
   }
 `;
 
+export const GET_ACCOUNT_BY_ID = gql`
+  query getAccountById($id: Int!) {
+    Accounts_by_pk(id: $id) {
+      accountTypeId
+      amount
+      color
+      createdAt
+      createdBy
+      currencyId
+      dueDay
+      id
+      limit
+      name
+      updatedAt
+    }
+  }
+`;
+
 export const GET_CURRENCIES = gql`
   query getCurrencies {
     Currencies {

@@ -2,7 +2,7 @@ import { CreateEntity, Expense, NewAccount } from './symbols';
 
 export const buildObject = <T extends {}>(defaultValue: T) => (
   defaults?: Partial<T>
-) => ({ ...defaultValue, defaults });
+) => ({ ...defaultValue, ...defaults });
 
 export const buildCreateEntityExpense = buildObject<CreateEntity<Expense>>({
   type: '',

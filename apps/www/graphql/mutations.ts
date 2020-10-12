@@ -43,3 +43,39 @@ export const DELETE_ACCOUNT = gql`
     }
   }
 `;
+
+export const UPDATE_ACCOUNT_BY_ID = gql`
+  mutation updateAccount(
+    $id: Int!
+    $accountTypeId: Int!
+    $color: String!
+    $currencyId: Int!
+    $dueDay: Int!
+    $limit: money = null
+    $name: String!
+  ) {
+    update_Accounts_by_pk(
+      pk_columns: { id: $id }
+      _set: {
+        accountTypeId: $accountTypeId
+        color: $color
+        currencyId: $currencyId
+        dueDay: $dueDay
+        limit: $limit
+        name: $name
+      }
+    ) {
+      accountTypeId
+      amount
+      color
+      createdAt
+      createdBy
+      currencyId
+      dueDay
+      id
+      limit
+      updatedAt
+      name
+    }
+  }
+`;

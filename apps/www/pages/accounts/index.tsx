@@ -57,7 +57,7 @@ const AccountsPage = () => {
         query: GET_ACCOUNTS,
       });
       const Accounts = existingAccounts.Accounts.filter(
-        (account) => account.id === mutationResult.data.delete_Accounts_by_pk.id
+        (account) => account.id !== mutationResult.data.delete_Accounts_by_pk.id
       );
       cache.writeQuery({
         query: GET_ACCOUNTS,
