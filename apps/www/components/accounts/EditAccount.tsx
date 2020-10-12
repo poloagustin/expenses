@@ -63,6 +63,7 @@ const EditAccount = ({ data }: EditAccountProps) => {
       account={account}
       setAccount={setAccount}
       submit={handleSubmit}
+      isNew={false}
     />
   );
 };

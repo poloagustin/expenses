@@ -41,6 +41,7 @@ const NewAccountPage = () => {
       account={account}
       setAccount={setAccount}
       submit={handleSubmit}
+      isNew={true}
     />
   );
 };
