@@ -67,12 +67,13 @@ export type Accounts = {
   __typename?: 'Accounts';
   accountTypeId: Scalars['Int'];
   amount: Scalars['money'];
+  color: Scalars['String'];
   createdAt: Scalars['timestamptz'];
   createdBy: Scalars['String'];
   currencyId: Scalars['Int'];
   dueDay?: Maybe<Scalars['Int']>;
   id: Scalars['Int'];
-  limit: Scalars['money'];
+  limit?: Maybe<Scalars['money']>;
   name: Scalars['String'];
   updatedAt: Scalars['timestamptz'];
 };
@@ -90,6 +91,7 @@ export type AccountsBoolExp = {
   _or?: Maybe<Array<Maybe<AccountsBoolExp>>>;
   accountTypeId?: Maybe<IntComparisonExp>;
   amount?: Maybe<MoneyComparisonExp>;
+  color?: Maybe<StringComparisonExp>;
   createdAt?: Maybe<TimestamptzComparisonExp>;
   createdBy?: Maybe<StringComparisonExp>;
   currencyId?: Maybe<IntComparisonExp>;
@@ -122,6 +124,7 @@ export type AccountsIncInput = {
 export type AccountsInsertInput = {
   accountTypeId?: Maybe<Scalars['Int']>;
   amount?: Maybe<Scalars['money']>;
+  color?: Maybe<Scalars['String']>;
   currencyId?: Maybe<Scalars['Int']>;
   dueDay?: Maybe<Scalars['Int']>;
   id?: Maybe<Scalars['Int']>;
@@ -155,6 +158,7 @@ export type AccountsOnConflict = {
 export type AccountsOrderBy = {
   accountTypeId?: Maybe<OrderBy>;
   amount?: Maybe<OrderBy>;
+  color?: Maybe<OrderBy>;
   createdAt?: Maybe<OrderBy>;
   createdBy?: Maybe<OrderBy>;
   currencyId?: Maybe<OrderBy>;
@@ -177,6 +181,8 @@ export enum AccountsSelectColumn {
   /** column name */
   Amount = 'amount',
   /** column name */
+  Color = 'color',
+  /** column name */
   CreatedAt = 'createdAt',
   /** column name */
   CreatedBy = 'createdBy',
@@ -198,6 +204,7 @@ export enum AccountsSelectColumn {
 export type AccountsSetInput = {
   accountTypeId?: Maybe<Scalars['Int']>;
   amount?: Maybe<Scalars['money']>;
+  color?: Maybe<Scalars['String']>;
   currencyId?: Maybe<Scalars['Int']>;
   dueDay?: Maybe<Scalars['Int']>;
   id?: Maybe<Scalars['Int']>;
@@ -211,6 +218,8 @@ export enum AccountsUpdateColumn {
   AccountTypeId = 'accountTypeId',
   /** column name */
   Amount = 'amount',
+  /** column name */
+  Color = 'color',
   /** column name */
   CurrencyId = 'currencyId',
   /** column name */
@@ -1005,6 +1014,74 @@ export type TimestamptzComparisonExp = {
   _nin?: Maybe<Array<Scalars['timestamptz']>>;
 };
 
+export type AddAccountMutationVariables = Exact<{
+  accountTypeId: Scalars['Int'];
+  amount: Scalars['money'];
+  color: Scalars['String'];
+  currencyId: Scalars['Int'];
+  dueDay?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['money']>;
+  name: Scalars['String'];
+}>;
+
+export type AddAccountMutation = { __typename?: 'mutation_root' } & {
+  insert_Accounts_one?: Maybe<
+    { __typename?: 'Accounts' } & Pick<
+      Accounts,
+      | 'accountTypeId'
+      | 'amount'
+      | 'color'
+      | 'createdAt'
+      | 'createdBy'
+      | 'currencyId'
+      | 'dueDay'
+      | 'id'
+      | 'limit'
+      | 'name'
+      | 'updatedAt'
+    >
+  >;
+};
+
+export type DeleteAccountMutationVariables = Exact<{
+  id: Scalars['Int'];
+}>;
+
+export type DeleteAccountMutation = { __typename?: 'mutation_root' } & {
+  delete_Accounts_by_pk?: Maybe<
+    { __typename?: 'Accounts' } & Pick<Accounts, 'id'>
+  >;
+};
+
+export type UpdateAccountMutationVariables = Exact<{
+  id: Scalars['Int'];
+  accountTypeId: Scalars['Int'];
+  color: Scalars['String'];
+  currencyId: Scalars['Int'];
+  dueDay: Scalars['Int'];
+  limit?: Maybe<Scalars['money']>;
+  name: Scalars['String'];
+}>;
+
+export type UpdateAccountMutation = { __typename?: 'mutation_root' } & {
+  update_Accounts_by_pk?: Maybe<
+    { __typename?: 'Accounts' } & Pick<
+      Accounts,
+      | 'accountTypeId'
+      | 'amount'
+      | 'color'
+      | 'createdAt'
+      | 'createdBy'
+      | 'currencyId'
+      | 'dueDay'
+      | 'id'
+      | 'limit'
+      | 'updatedAt'
+      | 'name'
+    >
+  >;
+};
+
 export type GetAccountTypesQueryVariables = Exact<{ [key: string]: never }>;
 
 export type GetAccountTypesQuery = { __typename?: 'query_root' } & {
@@ -1027,6 +1104,30 @@ export type GetAccountsQuery = { __typename?: 'query_root' } & {
       | 'createdAt'
       | 'currencyId'
       | 'createdBy'
+      | 'dueDay'
+      | 'id'
+      | 'limit'
+      | 'name'
+      | 'updatedAt'
+      | 'color'
+    >
+  >;
+};
+
+export type GetAccountByIdQueryVariables = Exact<{
+  id: Scalars['Int'];
+}>;
+
+export type GetAccountByIdQuery = { __typename?: 'query_root' } & {
+  Accounts_by_pk?: Maybe<
+    { __typename?: 'Accounts' } & Pick<
+      Accounts,
+      | 'accountTypeId'
+      | 'amount'
+      | 'color'
+      | 'createdAt'
+      | 'createdBy'
+      | 'currencyId'
       | 'dueDay'
       | 'id'
       | 'limit'
@@ -1096,6 +1197,224 @@ export type GetRecordsQuery = { __typename?: 'query_root' } & {
   >;
 };
 
+export const AddAccountDocument = gql`
+  mutation AddAccount(
+    $accountTypeId: Int!
+    $amount: money!
+    $color: String!
+    $currencyId: Int!
+    $dueDay: Int = null
+    $limit: money = null
+    $name: String!
+  ) {
+    insert_Accounts_one(
+      object: {
+        accountTypeId: $accountTypeId
+        amount: $amount
+        color: $color
+        currencyId: $currencyId
+        dueDay: $dueDay
+        limit: $limit
+        name: $name
+      }
+    ) {
+      accountTypeId
+      amount
+      color
+      createdAt
+      createdBy
+      currencyId
+      dueDay
+      id
+      limit
+      name
+      updatedAt
+    }
+  }
+`;
+export type AddAccountMutationFn = Apollo.MutationFunction<
+  AddAccountMutation,
+  AddAccountMutationVariables
+>;
+
+/**
+ * __useAddAccountMutation__
+ *
+ * To run a mutation, you first call `useAddAccountMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useAddAccountMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [addAccountMutation, { data, loading, error }] = useAddAccountMutation({
+ *   variables: {
+ *      accountTypeId: // value for 'accountTypeId'
+ *      amount: // value for 'amount'
+ *      color: // value for 'color'
+ *      currencyId: // value for 'currencyId'
+ *      dueDay: // value for 'dueDay'
+ *      limit: // value for 'limit'
+ *      name: // value for 'name'
+ *   },
+ * });
+ */
+export function useAddAccountMutation(
+  baseOptions?: Apollo.MutationHookOptions<
+    AddAccountMutation,
+    AddAccountMutationVariables
+  >
+) {
+  return Apollo.useMutation<AddAccountMutation, AddAccountMutationVariables>(
+    AddAccountDocument,
+    baseOptions
+  );
+}
+export type AddAccountMutationHookResult = ReturnType<
+  typeof useAddAccountMutation
+>;
+export type AddAccountMutationResult = Apollo.MutationResult<
+  AddAccountMutation
+>;
+export type AddAccountMutationOptions = Apollo.BaseMutationOptions<
+  AddAccountMutation,
+  AddAccountMutationVariables
+>;
+export const DeleteAccountDocument = gql`
+  mutation DeleteAccount($id: Int!) {
+    delete_Accounts_by_pk(id: $id) {
+      id
+    }
+  }
+`;
+export type DeleteAccountMutationFn = Apollo.MutationFunction<
+  DeleteAccountMutation,
+  DeleteAccountMutationVariables
+>;
+
+/**
+ * __useDeleteAccountMutation__
+ *
+ * To run a mutation, you first call `useDeleteAccountMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useDeleteAccountMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [deleteAccountMutation, { data, loading, error }] = useDeleteAccountMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useDeleteAccountMutation(
+  baseOptions?: Apollo.MutationHookOptions<
+    DeleteAccountMutation,
+    DeleteAccountMutationVariables
+  >
+) {
+  return Apollo.useMutation<
+    DeleteAccountMutation,
+    DeleteAccountMutationVariables
+  >(DeleteAccountDocument, baseOptions);
+}
+export type DeleteAccountMutationHookResult = ReturnType<
+  typeof useDeleteAccountMutation
+>;
+export type DeleteAccountMutationResult = Apollo.MutationResult<
+  DeleteAccountMutation
+>;
+export type DeleteAccountMutationOptions = Apollo.BaseMutationOptions<
+  DeleteAccountMutation,
+  DeleteAccountMutationVariables
+>;
+export const UpdateAccountDocument = gql`
+  mutation updateAccount(
+    $id: Int!
+    $accountTypeId: Int!
+    $color: String!
+    $currencyId: Int!
+    $dueDay: Int!
+    $limit: money = null
+    $name: String!
+  ) {
+    update_Accounts_by_pk(
+      pk_columns: { id: $id }
+      _set: {
+        accountTypeId: $accountTypeId
+        color: $color
+        currencyId: $currencyId
+        dueDay: $dueDay
+        limit: $limit
+        name: $name
+      }
+    ) {
+      accountTypeId
+      amount
+      color
+      createdAt
+      createdBy
+      currencyId
+      dueDay
+      id
+      limit
+      updatedAt
+      name
+    }
+  }
+`;
+export type UpdateAccountMutationFn = Apollo.MutationFunction<
+  UpdateAccountMutation,
+  UpdateAccountMutationVariables
+>;
+
+/**
+ * __useUpdateAccountMutation__
+ *
+ * To run a mutation, you first call `useUpdateAccountMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdateAccountMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updateAccountMutation, { data, loading, error }] = useUpdateAccountMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *      accountTypeId: // value for 'accountTypeId'
+ *      color: // value for 'color'
+ *      currencyId: // value for 'currencyId'
+ *      dueDay: // value for 'dueDay'
+ *      limit: // value for 'limit'
+ *      name: // value for 'name'
+ *   },
+ * });
+ */
+export function useUpdateAccountMutation(
+  baseOptions?: Apollo.MutationHookOptions<
+    UpdateAccountMutation,
+    UpdateAccountMutationVariables
+  >
+) {
+  return Apollo.useMutation<
+    UpdateAccountMutation,
+    UpdateAccountMutationVariables
+  >(UpdateAccountDocument, baseOptions);
+}
+export type UpdateAccountMutationHookResult = ReturnType<
+  typeof useUpdateAccountMutation
+>;
+export type UpdateAccountMutationResult = Apollo.MutationResult<
+  UpdateAccountMutation
+>;
+export type UpdateAccountMutationOptions = Apollo.BaseMutationOptions<
+  UpdateAccountMutation,
+  UpdateAccountMutationVariables
+>;
 export const GetAccountTypesDocument = gql`
   query getAccountTypes {
     AccountTypes {
@@ -1167,6 +1486,7 @@ export const GetAccountsDocument = gql`
       limit
       name
       updatedAt
+      color
     }
   }
 `;
@@ -1215,6 +1535,72 @@ export type GetAccountsLazyQueryHookResult = ReturnType<
 export type GetAccountsQueryResult = Apollo.QueryResult<
   GetAccountsQuery,
   GetAccountsQueryVariables
+>;
+export const GetAccountByIdDocument = gql`
+  query getAccountById($id: Int!) {
+    Accounts_by_pk(id: $id) {
+      accountTypeId
+      amount
+      color
+      createdAt
+      createdBy
+      currencyId
+      dueDay
+      id
+      limit
+      name
+      updatedAt
+    }
+  }
+`;
+
+/**
+ * __useGetAccountByIdQuery__
+ *
+ * To run a query within a React component, call `useGetAccountByIdQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetAccountByIdQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetAccountByIdQuery({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useGetAccountByIdQuery(
+  baseOptions?: Apollo.QueryHookOptions<
+    GetAccountByIdQuery,
+    GetAccountByIdQueryVariables
+  >
+) {
+  return Apollo.useQuery<GetAccountByIdQuery, GetAccountByIdQueryVariables>(
+    GetAccountByIdDocument,
+    baseOptions
+  );
+}
+export function useGetAccountByIdLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    GetAccountByIdQuery,
+    GetAccountByIdQueryVariables
+  >
+) {
+  return Apollo.useLazyQuery<GetAccountByIdQuery, GetAccountByIdQueryVariables>(
+    GetAccountByIdDocument,
+    baseOptions
+  );
+}
+export type GetAccountByIdQueryHookResult = ReturnType<
+  typeof useGetAccountByIdQuery
+>;
+export type GetAccountByIdLazyQueryHookResult = ReturnType<
+  typeof useGetAccountByIdLazyQuery
+>;
+export type GetAccountByIdQueryResult = Apollo.QueryResult<
+  GetAccountByIdQuery,
+  GetAccountByIdQueryVariables
 >;
 export const GetCurrenciesDocument = gql`
   query getCurrencies {

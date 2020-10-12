@@ -11,6 +11,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import Divider from '@material-ui/core/Divider';
 import AccountBalanceWalletIcon from '@material-ui/icons/AccountBalanceWallet';
+import AccountBalanceIcon from '@material-ui/icons/AccountBalance';
 
 export interface AppDrawerProps {
   open: boolean;
@@ -24,6 +25,7 @@ export const AppDrawer = ({ open }: AppDrawerProps) => {
     icon: typeof SvgIcon;
   }[] = [
     { path: '/accounts', label: 'Accounts', icon: AccountBalanceWalletIcon },
+    { path: '/records', label: 'Records', icon: AccountBalanceIcon },
     { path: '/api/login', label: 'Login', icon: ExitToAppIcon },
   ];
   const router = useRouter();
